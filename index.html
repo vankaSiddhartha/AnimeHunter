@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <img class="girl" id="girl" src="./targetImg.png">
+        <button type="button" class="startButton">Start Game</button>
+        <img class="blood" src="./blood.png"> 
+    </div>
+    
+  
+</body>
+<script>
+   const container = document.querySelector(".container");
+    const bloodSpot = document.querySelector(".blood");
+    const startBtn = document.querySelector(".startButton");
+        const targetGirl = document.getElementById("girl");
+        var audio = new Audio("./ahhh.mpeg");
+    
+        const contHeight = container.offsetHeight;
+            const contWidth = container.offsetWidth;
+            setInterval(() => {
+                        const randTop = Math.random() * (contHeight-100);
+                const randLeft = Math.random() * (contWidth-100);
+
+                    targetGirl.style.position = "absolute";
+                    targetGirl.style.top = randTop + "px";
+                    targetGirl.style.left = randLeft + "px";
+                    
+                }, 1000);
+
+                let score = 0;
+         
+ 
+
+          
+
+        
+  
+   window.addEventListener("click", (e) => {
+        bloodSpot.style.top = e.pageY + "px";
+        bloodSpot.style.left = e.pageX + "px";
+
+        if (e.target === targetGirl){
+            audio.play();
+            score++;
+             
+        }
+       
+        startBtn.innerText = "SCORE: " + score;
+    });
+    startBtn.addEventListener("click", () => {
+           targetGirl.style.visibility = "visible";
+
+            startBtn.innerText = "SCORE: " + score;
+        });
+ 
+</script>
+</html>
